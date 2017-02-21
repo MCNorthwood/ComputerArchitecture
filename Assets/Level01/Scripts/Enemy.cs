@@ -1,21 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 
-public class MainMenuUI : MonoBehaviour {
+public class Enemy : MonoBehaviour {
 
-    public string levelToLoad = "Level_01";
+    public GameObject deathEffect;
 
     public float gazeTime = 2f;
-
     private float timer;
 
-    private  bool gazedAt;
+    private bool gazedAt;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    private bool isDead = false;
 	
 	// Update is called once per frame
 	void Update () {
@@ -23,7 +18,7 @@ public class MainMenuUI : MonoBehaviour {
         {
             timer += Time.deltaTime;
 
-            if(timer >= gazeTime)
+            if(timer >= gazeTime && !isDead)
             {
                 timer = 0f;
                 ExecuteEvents.Execute(gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerDownHandler);
@@ -41,13 +36,22 @@ public class MainMenuUI : MonoBehaviour {
         gazedAt = false;
     }
 
-    public void StartPointerDown()
+    public void PointerDown()
     {
-        SceneManager.LoadScene(levelToLoad);
+        Die();
     }
 
-    public void ExitPointerDown()
+    void Die()
     {
-        Application.Quit();
+        isDead = true;
+
+        // Play particle effect to show death/neutralised
+        GameObject effect = (GameObject)Instantiate(deathEffect, transform.position, Quaternion.identity);
+        Destroy(effect, 5f);
+
+        // Count amount of enemies killed
+        GameStats.EnemiesKilled++;
+
+        Destroy(gameObject);
     }
 }

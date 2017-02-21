@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 [RequireComponent(typeof(Player))]
 public class PlayerMovement : MonoBehaviour {
@@ -11,6 +10,8 @@ public class PlayerMovement : MonoBehaviour {
     private int wpIndex = 0;
 
     private Player player;
+
+    public GameManager gameManager;
     
 	void Start ()
     {
@@ -48,7 +49,7 @@ public class PlayerMovement : MonoBehaviour {
     void EndPath()
     {
         // Game end code
-        GameManager.GameIsOver = true;
+        gameManager.GameEnd();
         Time.timeScale = 0f;
     }
 
