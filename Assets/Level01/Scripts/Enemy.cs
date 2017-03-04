@@ -5,6 +5,8 @@ public class Enemy : MonoBehaviour {
 
     public GameObject deathEffect;
 
+    public Transform enemyPos;
+
     public float gazeTime = 2f;
     private float timer;
 
@@ -46,12 +48,14 @@ public class Enemy : MonoBehaviour {
         isDead = true;
 
         // Play particle effect to show death/neutralised
-        GameObject effect = (GameObject)Instantiate(deathEffect, transform.position, Quaternion.identity);
+        GameObject effect = (GameObject)Instantiate(deathEffect, enemyPos.position, Quaternion.identity);
         Destroy(effect, 5f);
 
         // Count amount of enemies killed
         GameStats.EnemiesKilled++;
 
         Destroy(gameObject);
+
+        gazedAt = false;
     }
 }

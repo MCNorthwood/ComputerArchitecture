@@ -1,30 +1,31 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 
-public class MainMenuUI : MonoBehaviour {
-
-    public string levelToLoad = "Level_01";
+public class PopUI : MonoBehaviour {
 
     public float gazeTime = 2f;
-
     private float timer;
 
-    private  bool gazedAt;
-	
-	// Update is called once per frame
-	void Update () {
+    private bool gazedAt;
+
+    public GameObject ui;
+    public SlowGame slowGame;
+    public GameStats gameStats;
+
+    // Update is called once per frame
+    void Update()
+    {
         if (gazedAt)
         {
             timer += Time.deltaTime;
 
-            if(timer >= gazeTime)
+            if (timer >= gazeTime)
             {
-                timer = 0f;
                 ExecuteEvents.Execute(gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerDownHandler);
+                timer = 0f;
             }
         }
-	}
+    }
 
     public void PointerEnter()
     {
@@ -36,13 +37,14 @@ public class MainMenuUI : MonoBehaviour {
         gazedAt = false;
     }
 
-    public void StartPointerDown()
+    public void PointerDown()
     {
-        SceneManager.LoadScene(levelToLoad);
-    }
+        ui.SetActive(!ui.activeSelf);
 
-    public void ExitPointerDown()
-    {
-        Application.Quit();
+        if (!gameStats.poppedUI)
+        {
+            slowGame.Toggle();
+            gameStats.poppedUI = true;
+        }
     }
 }

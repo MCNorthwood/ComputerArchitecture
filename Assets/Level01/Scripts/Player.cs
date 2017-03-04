@@ -7,7 +7,7 @@ public class Player : MonoBehaviour {
     [HideInInspector]
     public float speed;
 
-	void Start ()
+    void Start ()
     {
         speed = startSpeed;
 	}
