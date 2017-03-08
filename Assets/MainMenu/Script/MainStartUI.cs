@@ -7,9 +7,7 @@ public class MainStartUI : MonoBehaviour {
     public string levelToLoad = "Level_01";
 
     public float gazeTime = 2f;
-
     private float timer;
-
     private bool gazedAt;
 
     // Update is called once per frame
@@ -23,6 +21,7 @@ public class MainStartUI : MonoBehaviour {
             {
                 ExecuteEvents.Execute(gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerDownHandler);
                 timer = 0f;
+                gazedAt = false;
             }
         }
     }
@@ -39,13 +38,11 @@ public class MainStartUI : MonoBehaviour {
 
     public void StartPointerDown()
     {
-        gazedAt = false;
         SceneManager.LoadScene(levelToLoad);
     }
 
     public void ExitPointerDown()
     {
-        gazedAt = false;
         Application.Quit();
     }
 }

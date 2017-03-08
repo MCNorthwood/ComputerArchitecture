@@ -2,9 +2,11 @@
 
 public class GameManager : MonoBehaviour {
 
-    public static bool GameIsOver;
+    public bool GameIsOver;
 
     public GameObject completeLevelUI;
+
+    public Transform lastWaypoint;
 
 	void Start ()
     {
@@ -19,9 +21,17 @@ public class GameManager : MonoBehaviour {
         }
 	}
 
-    public void GameEnd()
+    public void GameEnd(Transform player)
     {
         GameIsOver = true;
         completeLevelUI.SetActive(true);
+
+        if(player.position.x == lastWaypoint.position.x &&
+           player.position.z == lastWaypoint.position.z &&
+           player.position.y == lastWaypoint.position.y)
+        {
+            player.position = lastWaypoint.position;
+            player.rotation = lastWaypoint.rotation;
+        }
     }
 }

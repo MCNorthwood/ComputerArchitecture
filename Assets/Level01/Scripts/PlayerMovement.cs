@@ -4,7 +4,6 @@
 public class PlayerMovement : MonoBehaviour {
 
     public Transform partToRotate;
-    public float turnSpeed = 10f;
 
     private Transform target;
     private int wpIndex = 0;
@@ -21,17 +20,20 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Update ()
     {
-        Vector3 dir = target.position - transform.position;
-        transform.Translate(dir.normalized * player.speed * Time.deltaTime, Space.World);
-
-        if(Vector3.Distance(transform.position, target.position) <= 0.4f)
+        if (!gameManager.GameIsOver)
         {
-            getNextWaypoint();
+            Vector3 dir = target.position - transform.position;
+            transform.Translate(dir.normalized * player.speed * Time.deltaTime, Space.World);
+
+            if (Vector3.Distance(transform.position, target.position) <= 0.4f)
+            {
+                getNextWaypoint();
+            }
+
+            TurnToTarget();
+
+            player.speed = player.startSpeed;
         }
-
-        TurnToTarget();
-
-        player.speed = player.startSpeed;
 	}
 
     void getNextWaypoint()
@@ -49,8 +51,7 @@ public class PlayerMovement : MonoBehaviour {
     void EndPath()
     {
         // Game end code
-        gameManager.GameEnd();
-        Time.timeScale = 0f;
+        gameManager.GameEnd(transform);
     }
 
     void TurnToTarget()
@@ -60,12 +61,7 @@ public class PlayerMovement : MonoBehaviour {
         //transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
 
         // Gentle turn to waypoint
-        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * player.turn).eulerAngles;
         partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-
-        //Vector3 dir = target.position - transform.position;
-        //float step = player.speed * Time.deltaTime;
-        //Vector3 newDir = Vector3.RotateTowards(transform.forward, dir, step, 0.0F);
-        //transform.rotation = Quaternion.LookRotation(newDir);
     }
 }

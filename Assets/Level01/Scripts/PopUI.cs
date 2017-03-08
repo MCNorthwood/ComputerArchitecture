@@ -2,15 +2,20 @@
 using UnityEngine.EventSystems;
 
 public class PopUI : MonoBehaviour {
-
+    
     public float gazeTime = 2f;
+    private bool gazedAt;
     private float timer;
 
-    private bool gazedAt;
-
     public GameObject ui;
-    public SlowGame slowGame;
     public GameStats gameStats;
+
+    private Collider collided;
+
+    void Start()
+    {
+        collided = GetComponent<Collider>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -40,11 +45,6 @@ public class PopUI : MonoBehaviour {
     public void PointerDown()
     {
         ui.SetActive(!ui.activeSelf);
-
-        if (!gameStats.poppedUI)
-        {
-            slowGame.Toggle();
-            gameStats.poppedUI = true;
-        }
+        collided.enabled = false;
     }
 }

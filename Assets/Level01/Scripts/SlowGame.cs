@@ -6,14 +6,12 @@ public class SlowGame : MonoBehaviour {
 
     public float gazeTime = 1f;
     private float timer;
-
     private bool gazedAt;
-
-    [HideInInspector]
-    public bool pause;
+    
+    private bool pause;
 
     public Text pauseText;
-    public float slow = .2f;
+    public float slow = .5f;
 
     void Start()
     {
@@ -31,6 +29,7 @@ public class SlowGame : MonoBehaviour {
             {
                 ExecuteEvents.Execute(gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerDownHandler);
                 timer = 0f;
+                gazedAt = false;
             }
         }
     }
@@ -58,12 +57,12 @@ public class SlowGame : MonoBehaviour {
         if (pause)
         {
             Time.timeScale = slow;
-            pauseText.text = "Look at to \nturn Normal";
+            pauseText.text = "Half Speed";
         }
         else
         {
             Time.timeScale = 1f;
-            pauseText.text = "Look at to \nSlow";
+            pauseText.text = "Normal Speed";
         }
     }
 }

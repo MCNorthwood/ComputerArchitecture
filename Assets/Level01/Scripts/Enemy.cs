@@ -3,20 +3,29 @@ using UnityEngine.EventSystems;
 
 public class Enemy : MonoBehaviour {
 
+    public GameManager gameManager;
     public GameObject deathEffect;
+    public MathsUI maths;
 
     public Transform enemyPos;
 
     public float gazeTime = 2f;
     private float timer;
-
     private bool gazedAt;
 
-    private bool isDead = false;
-	
-	// Update is called once per frame
-	void Update () {
-        if (gazedAt)
+    [HideInInspector]
+    public bool isDead;
+    
+    private Collider collided;
+
+    void Start()
+    {
+        collided = GetComponent<Collider>();
+    }
+
+    // Update is called once per frame
+    void Update () {
+        if (gazedAt && !gameManager.GameIsOver)
         {
             timer += Time.deltaTime;
 
@@ -25,6 +34,14 @@ public class Enemy : MonoBehaviour {
                 timer = 0f;
                 ExecuteEvents.Execute(gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerDownHandler);
             }
+        }
+        else if (gameManager.GameIsOver)
+        {
+            collided.enabled = false;
+        }
+        else
+        {
+            collided.enabled = true;
         }
 	}
 
@@ -40,22 +57,28 @@ public class Enemy : MonoBehaviour {
 
     public void PointerDown()
     {
+        DeathEffect();
         Die();
+        StartCoroutine(maths.changeUI());
     }
 
     void Die()
+    {
+        // Count amount of enemies killed
+        GameStats.EnemiesKilled++;
+
+        //Destroy(gameObject);
+        Destroy(transform.Find("Enemy").gameObject);
+        
+        collided.enabled = false;
+    }
+
+    void DeathEffect()
     {
         isDead = true;
 
         // Play particle effect to show death/neutralised
         GameObject effect = (GameObject)Instantiate(deathEffect, enemyPos.position, Quaternion.identity);
         Destroy(effect, 5f);
-
-        // Count amount of enemies killed
-        GameStats.EnemiesKilled++;
-
-        Destroy(gameObject);
-
-        gazedAt = false;
     }
 }

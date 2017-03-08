@@ -22,6 +22,7 @@ public class GameOver : MonoBehaviour {
             {
                 ExecuteEvents.Execute(gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerDownHandler);
                 timer = 0f;
+                gazedAt = false;
             }
         }
     }
@@ -39,12 +40,10 @@ public class GameOver : MonoBehaviour {
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        gazedAt = false;
     }
 
     public void Menu()
     {
         SceneManager.LoadScene(menuSceneName);
-        gazedAt = false;
     }
 }

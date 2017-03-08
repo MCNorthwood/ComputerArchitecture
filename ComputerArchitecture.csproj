@@ -130,6 +130,7 @@
     <Compile Include="Assets\Level01\Scripts\GameOver.cs" />
     <Compile Include="Assets\Level01\Scripts\GameStats.cs" />
     <Compile Include="Assets\Level01\Scripts\KilledUI.cs" />
+    <Compile Include="Assets\Level01\Scripts\MathsUI.cs" />
     <Compile Include="Assets\Level01\Scripts\Player.cs" />
     <Compile Include="Assets\Level01\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Level01\Scripts\PopUI.cs" />

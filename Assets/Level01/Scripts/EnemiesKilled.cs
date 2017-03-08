@@ -23,7 +23,7 @@ public class EnemiesKilled : MonoBehaviour {
             killed++;
             killedText.text = killed.ToString();
 
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(.1f);
         }
     }
 }
