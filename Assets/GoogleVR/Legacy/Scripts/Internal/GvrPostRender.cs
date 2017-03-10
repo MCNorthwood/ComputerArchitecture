@@ -17,6 +17,7 @@
 #if !UNITY_HAS_GOOGLEVR || UNITY_EDITOR
 
 using UnityEngine;
+using System;
 
 /// Performs distortion correction on the rendered stereo screen.  This script
 /// and GvrPreRender work together to draw the whole screen in VR Mode.
@@ -84,11 +85,15 @@ public class GvrPostRender : MonoBehaviour {
   private float aspectComparison;
 
   void OnPreCull() {
-    // The Game window's aspect ratio may not match the fake device parameters.
-    float realAspect = (float)Screen.width / Screen.height;
-    float fakeAspect = GvrViewer.Instance.Profile.screen.width / GvrViewer.Instance.Profile.screen.height;
-    aspectComparison = fakeAspect / realAspect;
-    cam.orthographicSize = 0.5f * Mathf.Max(1, aspectComparison);
+        try
+        {
+            // The Game window's aspect ratio may not match the fake device parameters.
+            float realAspect = (float)Screen.width / Screen.height;
+            float fakeAspect = GvrViewer.Instance.Profile.screen.width / GvrViewer.Instance.Profile.screen.height;
+            aspectComparison = fakeAspect / realAspect;
+            cam.orthographicSize = 0.5f * Mathf.Max(1, aspectComparison);
+        }
+        catch(Exception e){ Debug.Log(e.ToString()); }
   }
 #endif
 

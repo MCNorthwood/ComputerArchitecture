@@ -21,7 +21,7 @@ public class EnemiesKilled : MonoBehaviour {
         while (killed < GameStats.EnemiesKilled)
         {
             killed++;
-            killedText.text = killed.ToString();
+            killedText.text = killed.ToString() + " / 45";
 
             yield return new WaitForSeconds(.1f);
         }

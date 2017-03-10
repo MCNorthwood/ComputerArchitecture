@@ -58,6 +58,7 @@ public class Enemy : MonoBehaviour {
     public void PointerDown()
     {
         DeathEffect();
+        collided.enabled = false;
         Die();
         StartCoroutine(maths.changeUI());
     }
@@ -67,10 +68,8 @@ public class Enemy : MonoBehaviour {
         // Count amount of enemies killed
         GameStats.EnemiesKilled++;
 
-        //Destroy(gameObject);
-        Destroy(transform.Find("Enemy").gameObject);
-        
-        collided.enabled = false;
+        Destroy(transform.GetChild(0).gameObject);
+        Destroy(transform.parent.gameObject, 4f);
     }
 
     void DeathEffect()

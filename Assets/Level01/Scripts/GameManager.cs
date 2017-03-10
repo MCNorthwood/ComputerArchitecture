@@ -2,6 +2,7 @@
 
 public class GameManager : MonoBehaviour {
 
+    [HideInInspector]
     public bool GameIsOver;
 
     public GameObject completeLevelUI;
@@ -23,9 +24,6 @@ public class GameManager : MonoBehaviour {
 
     public void GameEnd(Transform player)
     {
-        GameIsOver = true;
-        completeLevelUI.SetActive(true);
-
         if(player.position.x == lastWaypoint.position.x &&
            player.position.z == lastWaypoint.position.z &&
            player.position.y == lastWaypoint.position.y)
@@ -33,5 +31,9 @@ public class GameManager : MonoBehaviour {
             player.position = lastWaypoint.position;
             player.rotation = lastWaypoint.rotation;
         }
+
+        GameIsOver = true;
+        completeLevelUI.SetActive(true);
+        GetComponent<GameStats>().CheckForHighScore();
     }
 }

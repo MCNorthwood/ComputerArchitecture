@@ -5,27 +5,28 @@ public class PlayerMovement : MonoBehaviour {
 
     public Transform partToRotate;
 
-    private Transform target;
-    private int wpIndex = 0;
-
     private Player player;
 
     public GameManager gameManager;
     
-	void Start ()
+    [Header("Waypoints")]
+    private Transform waypointTarget;
+    private int wpIndex = 0;
+
+    void Start ()
     {
         player = GetComponent<Player>();
-        target = Waypoint.wp[0];
+        waypointTarget = Waypoint.wp[0];
 	}
 
 	void Update ()
     {
         if (!gameManager.GameIsOver)
         {
-            Vector3 dir = target.position - transform.position;
+            Vector3 dir = waypointTarget.position - transform.position;
             transform.Translate(dir.normalized * player.speed * Time.deltaTime, Space.World);
 
-            if (Vector3.Distance(transform.position, target.position) <= 0.4f)
+            if (Vector3.Distance(transform.position, waypointTarget.position) <= 0.4f)
             {
                 getNextWaypoint();
             }
@@ -45,7 +46,7 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         wpIndex++;
-        target = Waypoint.wp[wpIndex];
+        waypointTarget = Waypoint.wp[wpIndex];
     }
 
     void EndPath()
@@ -56,12 +57,11 @@ public class PlayerMovement : MonoBehaviour {
 
     void TurnToTarget()
     {
-        Vector3 dir = (target.position - transform.position).normalized;
+        Vector3 dir = (waypointTarget.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
-        //transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
 
         // Gentle turn to waypoint
-        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * player.turn).eulerAngles;
+        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation,  player.turn * Time.deltaTime).eulerAngles;
         partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
 }
