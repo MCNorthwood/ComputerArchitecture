@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class MainStartUI : MonoBehaviour {
 
     public string levelToLoad = "Level_01";
+    public SceneFader sceneFade;
 
     public float gazeTime = 2f;
     private float timer;
@@ -38,7 +39,7 @@ public class MainStartUI : MonoBehaviour {
 
     public void StartPointerDown()
     {
-        SceneManager.LoadScene(levelToLoad);
+        sceneFade.FadeTo(levelToLoad);
     }
 
     public void ExitPointerDown()

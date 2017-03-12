@@ -7,6 +7,9 @@ public class GameStats : MonoBehaviour {
 
     public static string PlayerName = "E-Learner";
 
+    [HideInInspector]
+    public bool cpuHit;
+
     public Text[] highScores;
 
     int[] highScoreValues;
@@ -17,6 +20,8 @@ public class GameStats : MonoBehaviour {
         EnemiesKilled = 0;
         highScoreValues = new int[highScores.Length];
         highScoreNames = new string[highScores.Length];
+
+        cpuHit = false;
 
         for (int i = 0; i < highScores.Length; i++)
         {

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameOver : MonoBehaviour {
 
     public string menuSceneName = "MainMenu";
+    public SceneFader sceneFade;
 
     public float gazeTime = 2f;
     private float timer;
@@ -39,11 +40,11 @@ public class GameOver : MonoBehaviour {
 
     public void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        sceneFade.FadeTo(SceneManager.GetActiveScene().name);
     }
 
     public void Menu()
     {
-        SceneManager.LoadScene(menuSceneName);
+        sceneFade.FadeTo(menuSceneName);
     }
 }

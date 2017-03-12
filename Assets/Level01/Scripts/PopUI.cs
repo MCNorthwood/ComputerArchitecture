@@ -2,7 +2,9 @@
 using UnityEngine.EventSystems;
 
 public class PopUI : MonoBehaviour {
-    
+
+    public bool isRam = false;
+
     public float gazeTime = 2f;
     private bool gazedAt;
     private float timer;
@@ -11,6 +13,7 @@ public class PopUI : MonoBehaviour {
     public GameStats gameStats;
 
     private Collider collided;
+    public GameObject particle;
 
     void Start()
     {
@@ -44,7 +47,26 @@ public class PopUI : MonoBehaviour {
 
     public void PointerDown()
     {
+        if (!gameStats.cpuHit && !isRam)
+        {
+            Pop();
+            gameStats.cpuHit = true;
+        }
+        else if (gameStats.cpuHit && isRam)
+        {
+            Pop();
+        }
+    }
+
+    void Pop()
+    {
         ui.SetActive(!ui.activeSelf);
+
+        if (particle != null)
+        {
+            particle.SetActive(true);
+        }
+
         collided.enabled = false;
     }
 }
