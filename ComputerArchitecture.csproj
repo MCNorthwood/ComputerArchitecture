@@ -52,9 +52,6 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -69,9 +66,6 @@
     </Reference>
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Purchasing">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VR">
       <HintPath>Library\UnityAssemblies\UnityEngine.VR.dll</HintPath>
@@ -129,25 +123,25 @@
     <Compile Include="Assets\GoogleVR\Scripts\UI\IGvrGazeResponder.cs" />
     <Compile Include="Assets\GoogleVR\Scripts\Utilities\GvrFPS.cs" />
     <Compile Include="Assets\GoogleVR\Scripts\Utilities\GvrIntent.cs" />
-    <Compile Include="Assets\Level01\Scripts\EnemiesKilled.cs" />
-    <Compile Include="Assets\Level01\Scripts\Enemy.cs" />
-    <Compile Include="Assets\Level01\Scripts\EnemyMovement.cs" />
-    <Compile Include="Assets\Level01\Scripts\Enter.cs" />
-    <Compile Include="Assets\Level01\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Level01\Scripts\GameOver.cs" />
-    <Compile Include="Assets\Level01\Scripts\GameStats.cs" />
-    <Compile Include="Assets\Level01\Scripts\KilledUI.cs" />
-    <Compile Include="Assets\Level01\Scripts\MathsUI.cs" />
-    <Compile Include="Assets\Level01\Scripts\Player.cs" />
-    <Compile Include="Assets\Level01\Scripts\PlayerEnter.cs" />
-    <Compile Include="Assets\Level01\Scripts\PlayerMovement.cs" />
-    <Compile Include="Assets\Level01\Scripts\PopUI.cs" />
-    <Compile Include="Assets\Level01\Scripts\RGBColour.cs" />
-    <Compile Include="Assets\Level01\Scripts\RotateDisk.cs" />
-    <Compile Include="Assets\Level01\Scripts\RotateUI.cs" />
-    <Compile Include="Assets\Level01\Scripts\SceneFader.cs" />
-    <Compile Include="Assets\Level01\Scripts\SlowGame.cs" />
-    <Compile Include="Assets\Level01\Scripts\Waypoint.cs" />
+    <Compile Include="Assets\Level_01\Scripts\EnemiesKilled.cs" />
+    <Compile Include="Assets\Level_01\Scripts\Enemy.cs" />
+    <Compile Include="Assets\Level_01\Scripts\EnemyMovement.cs" />
+    <Compile Include="Assets\Level_01\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Level_01\Scripts\GameOver.cs" />
+    <Compile Include="Assets\Level_01\Scripts\GameStats.cs" />
+    <Compile Include="Assets\Level_01\Scripts\KilledUI.cs" />
+    <Compile Include="Assets\Level_01\Scripts\MathsUI.cs" />
+    <Compile Include="Assets\Level_01\Scripts\Player.cs" />
+    <Compile Include="Assets\Level_01\Scripts\PlayerEnter.cs" />
+    <Compile Include="Assets\Level_01\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Level_01\Scripts\PopUI.cs" />
+    <Compile Include="Assets\Level_01\Scripts\RGBColour.cs" />
+    <Compile Include="Assets\Level_01\Scripts\RotateDisk.cs" />
+    <Compile Include="Assets\Level_01\Scripts\RotateUI.cs" />
+    <Compile Include="Assets\Level_01\Scripts\SceneFader.cs" />
+    <Compile Include="Assets\Level_01\Scripts\SlowGame.cs" />
+    <Compile Include="Assets\Level_01\Scripts\Trigger.cs" />
+    <Compile Include="Assets\Level_01\Scripts\Waypoint.cs" />
     <Compile Include="Assets\MainMenu\Script\MainStartUI.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -356,9 +356,11 @@ public class GvrAudioSource : MonoBehaviour {
     if (id < 0) {
       id = GvrAudio.CreateAudioSource(hrtfEnabled);
       if (id >= 0) {
-        GvrAudio.UpdateAudioSource(id, transform, bypassRoomEffects, gainDb, spread, rolloffMode,
-                                   sourceMinDistance, sourceMaxDistance, directivityAlpha,
-                                   directivitySharpness, currentOcclusion);
+        //try
+        //{
+            GvrAudio.UpdateAudioSource(id, transform, bypassRoomEffects, gainDb, spread, rolloffMode, sourceMinDistance, sourceMaxDistance, directivityAlpha, directivitySharpness, currentOcclusion);
+        //}
+        //catch(System.Exception e) { Debug.Log(e.ToString()); }
         audioSource.spatialize = true;
         audioSource.SetSpatializerFloat(0, (float)id);
         audioSource.SetSpatializerFloat(1, (float)GvrAudio.SpatializerType.Source);
