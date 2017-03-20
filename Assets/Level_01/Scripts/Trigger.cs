@@ -21,7 +21,9 @@ public class Trigger : MonoBehaviour {
         if (objectTag == "EnemyPrefab")
         {
             Triggered();
-        
+
+            GameManager.SpinDisks = true;
+
             collided.enabled = false;
         }
     }

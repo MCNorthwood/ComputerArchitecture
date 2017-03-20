@@ -5,11 +5,19 @@
 /// </summary>
 
 public class RotateDisk : MonoBehaviour {
-
+    
     public float angle = 10f;
 
 	// Update is called once per frame
 	void Update () {
-        transform.Rotate(0, angle * Time.deltaTime, 0);
+        if (GameManager.SpinDisks)
+        {
+            Spin();
+        }
 	}
+
+    void Spin()
+    {
+        transform.Rotate(0, angle * Time.deltaTime, 0);
+    }
 }

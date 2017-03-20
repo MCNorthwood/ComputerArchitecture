@@ -10,13 +10,17 @@ public class GameManager : MonoBehaviour {
     [HideInInspector]
     public bool GameIsOver;
 
+    [HideInInspector]
+    public static bool SpinDisks;
+
     public GameObject completeLevelUI;
 
     public Transform lastWaypoint;
 
 	void Start ()
     {
-        GameIsOver = false;	
+        GameIsOver = false;
+        SpinDisks = false;
 	}
 	
 	void Update ()
