@@ -1,16 +1,22 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
+
+/// <summary>
+/// This is the code for the main menu and how most of the VR Code works
+/// When the Pointer enters the collision box it changes the private boolean to true
+/// Then in the Update functions checks how long this is true for.
+/// And then force the down (Button) as this cardboard app has no buttons used.
+/// </summary>
 
 public class MainStartUI : MonoBehaviour {
 
     public string levelToLoad = "Level_01";
+    public SceneFader sceneFade;
 
     public float gazeTime = 2f;
     private float timer;
     private bool gazedAt;
-
-    // Update is called once per frame
+    
     void Update()
     {
         if (gazedAt)
@@ -38,7 +44,7 @@ public class MainStartUI : MonoBehaviour {
 
     public void StartPointerDown()
     {
-        SceneManager.LoadScene(levelToLoad);
+        sceneFade.FadeTo(levelToLoad);
     }
 
     public void ExitPointerDown()

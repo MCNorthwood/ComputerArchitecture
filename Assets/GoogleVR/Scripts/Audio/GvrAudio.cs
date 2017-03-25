@@ -93,23 +93,28 @@ public static class GvrAudio {
     }
   }
 
-  /// Updates the audio listener.
-  /// @note This should only be called from the main Unity thread.
-  public static void UpdateAudioListener (float globalGainDb, LayerMask occlusionMask,
-                                          float worldScale) {
-    if (initialized) {
-      occlusionMaskValue = occlusionMask.value;
-      worldScaleInverse = 1.0f / worldScale;
-      float globalGain = ConvertAmplitudeFromDb(globalGainDb);
-      Vector3 position = listenerTransform.position;
-      Quaternion rotation = listenerTransform.rotation;
-      ConvertAudioTransformFromUnity(ref position, ref rotation);
-      // Pass listener properties to the system.
-      SetListenerGain(globalGain);
-      SetListenerTransform(position.x, position.y, position.z, rotation.x, rotation.y, rotation.z,
-                           rotation.w);
+    /// Updates the audio listener.
+    /// @note This should only be called from the main Unity thread.
+    public static void UpdateAudioListener(float globalGainDb, LayerMask occlusionMask,
+                                            float worldScale)
+    {
+        if (initialized)
+        {
+            //try
+            //{
+                occlusionMaskValue = occlusionMask.value;
+                worldScaleInverse = 1.0f / worldScale;
+                float globalGain = ConvertAmplitudeFromDb(globalGainDb);
+                Vector3 position = listenerTransform.position;
+                Quaternion rotation = listenerTransform.rotation;
+                ConvertAudioTransformFromUnity(ref position, ref rotation);
+                // Pass listener properties to the system.
+                SetListenerGain(globalGain);
+                SetListenerTransform(position.x, position.y, position.z, rotation.x, rotation.y, rotation.z, rotation.w);
+            //}
+            //catch (System.Exception e) { Debug.Log(e.ToString()); }
+        }
     }
-  }
 
   /// Creates a new first-order ambisonic soundfield with a unique id.
   /// @note This should only be called from the main Unity thread.
